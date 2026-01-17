@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         if (moveInput != 0)
         {
             actorController.Run();
-            actorController.Turn(moveInput > 0 ? 1 : -1);
+            actorController.Turn(moveInput < 0 ? 1 : -1);
         }
         else
         {

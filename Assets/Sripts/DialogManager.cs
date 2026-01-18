@@ -102,25 +102,42 @@ public class DialogueManager : MonoBehaviour
 
         DialogueLine currentLine = lines.Dequeue();
 
-        if (!isFirstLine)
-        {
-            if (isLastOposite)
-            {
-                animatorOposite.Play("HideOposite");
-            }
-            else
-            {
-                animatorAvatar.Play("HideAvatar");
-            }
-        }
+        //if (!isFirstLine)
+        //{
+        //    if (isLastOposite)
+        //    {
+        //        animatorOposite.Play("HideOposite");
+        //    }
+        //    else
+        //    {
+        //        animatorAvatar.Play("HideAvatar");
+        //    }
+        //}
 
         if (currentLine.character.isOposite)
         {
+            if (!isFirstLine)
+            {
+                if (!isLastOposite)
+                {
+                    animatorAvatar.Play("HideAvatar");
+                }
+            }
+
             characterIconOposite.sprite = currentLine.character.icon;
             animatorOposite.Play("ShowOposite");
         }
         else
         {
+            if (!isFirstLine)
+            {
+                if (isLastOposite)
+                {
+                    animatorOposite.Play("HideOposite");
+                }
+            }
+
+
             characterIcon.sprite = currentLine.character.icon;
             animatorAvatar.Play("ShowAvatar");
         }

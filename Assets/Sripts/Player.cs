@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     public void DisableControls()
     {
+        actorController.Stop();
         canMove = false;
         moveInput = 0f;
     }
@@ -48,18 +49,19 @@ public class Player : MonoBehaviour
                 actorController.Stop();
             }
         }
+        else
+        {
+            moveInput = 0;
+        }
     }
 
 
     private void FixedUpdate()
     {
-        if (canMove && !DialogueManager.Instance.IsDialogueActive)
-        {
-            // Движение только по X
-            rb.linearVelocity = new Vector2(
-                moveInput * moveSpeed,
-                rb.linearVelocity.y
-            );
-        }
+        // Движение только по X
+        rb.linearVelocity = new Vector2(
+            moveInput * moveSpeed,
+            rb.linearVelocity.y
+        );
     }
 }

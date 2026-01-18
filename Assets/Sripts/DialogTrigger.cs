@@ -17,6 +17,8 @@ public class DialogueLine
     public DialogueCharacter character;
     [TextArea(3,10)]
     public string line;
+
+    public AudioClip sound;
 }
 
 [System.Serializable]

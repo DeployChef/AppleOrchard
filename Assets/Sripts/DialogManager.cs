@@ -25,6 +25,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Animator animatorAvatar;
     [SerializeField] private Animator animatorOposite;
 
+    [SerializeField] private AudioSource audioSource;
+
     private readonly Queue<DialogueLine> lines = new Queue<DialogueLine>();
     private Dialogue currentDialogue; // Храним текущий диалог
     private bool isFirstLine = true;
@@ -143,6 +145,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         StopAllCoroutines();
+        if (currentLine.sound != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = currentLine.sound;
+            audioSource.Play();
+        }
         StartCoroutine(TypeSentence(currentLine.line));
 
         isLastOposite = currentLine.character.isOposite;
@@ -174,6 +182,8 @@ public class DialogueManager : MonoBehaviour
         {
             animatorAvatar.Play("HideAvatar");
         }
+
+        audioSource.Stop();
 
         IsDialogueActive = false;
         isTyping = false;

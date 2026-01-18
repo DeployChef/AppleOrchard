@@ -1,11 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Root : MonoBehaviour
 {
+    public PlayableDirector introDirector;
+    public DialogTrigger introDialog;
+
     private void Awake()
     {
         Debug.Log("Start");
-        DialogueManager.Instance.StartDialogue();
+        //introDialog.TriggerDialog();
+    }
+
+    private void Start()
+    {
+        introDirector.Play();
     }
 }

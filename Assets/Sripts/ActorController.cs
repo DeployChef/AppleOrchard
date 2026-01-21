@@ -1,16 +1,26 @@
+using System;
 using UnityEngine;
 
 public class ActorController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource audioS;
+    [SerializeField] private AudioClip clip;
+
+    public void Awake()
+    {
+        audioS.clip = clip;
+    }
 
     public void Stop()
     {
+        audioS.Stop();
         animator.SetBool("IsRun", false);
     }
 
     public void Run()
     {
+        audioS.Play();
         animator.SetBool("IsRun", true);
     }
 
